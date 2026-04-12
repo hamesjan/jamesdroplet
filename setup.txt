@@ -9,6 +9,9 @@ Set up swap file for increased RAM
    17  sudo mkswap /swapfile
    18  sudo swapon /swapfile
    19  echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+   
+
+Only swap when absolutely necessary
    20  sudo sysctl vm.swappiness=10
    21  echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
    22  swapon --show
