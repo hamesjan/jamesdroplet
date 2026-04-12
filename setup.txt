@@ -1,0 +1,15 @@
+Set up swap file for increased RAM
+
+   11  sudo cp /etc/fstab /etc/fstab.bak
+   12  cat /etc/fstab
+   13  cat /etc/fstab.bak 
+   14  exit
+   15  sudo fallocate -l 2G /swapfile
+   16  sudo chmod 600 /swapfile
+   17  sudo mkswap /swapfile
+   18  sudo swapon /swapfile
+   19  echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+   20  sudo sysctl vm.swappiness=10
+   21  echo 'vm.swappiness=10' | sudo tee -a /etc/sysctl.conf
+   22  swapon --show
+
