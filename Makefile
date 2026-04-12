@@ -39,13 +39,13 @@ firewall-setup:
 # ── clawedmachine ──────────────────────────────────────────────────────────
 
 install-site-clawedmachine:
-	cp /root/clawedmachine/clawedmachine.service /etc/systemd/system/clawedmachine.service
+	cp /root/clawedmachine/platform/clawedmachine.service /etc/systemd/system/clawedmachine.service
 	systemctl daemon-reload
 	systemctl enable clawedmachine
 	systemctl start clawedmachine
 
 deploy-clawedmachine:
-	cd /root/clawedmachine && go build -o clawedmachine-server .
+	cd /root/clawedmachine/platform && go build -o clawedmachine-server .
 	systemctl restart clawedmachine
 	$(MAKE) caddy-reload
 
@@ -61,7 +61,7 @@ deploy-clawedmachine:
 #
 # ── Adding a new site ──────────────────────────────────────────────────────
 #
-# 1. Create /root/<site>/ with Caddyfile.site, main.go, go.mod, <site>.service
+# 1. Create /root/<site>/platform/ with Caddyfile.site, main.go, go.mod, <site>.service
 # 2. Add install-site-<site> and deploy-<site> targets below (copy the pattern above)
 # 3. make install-site-<site> && make deploy-<site>
 # No changes to Caddyfile needed — the import glob picks it up automatically.
