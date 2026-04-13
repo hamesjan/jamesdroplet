@@ -2,4 +2,4 @@
     email james@clawedmachine.com
 }
 
-import /root/*/platform/Caddyfile.site
+import /root/clawedmachine/apps/platform/Caddyfile.site
