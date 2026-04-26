@@ -1,5 +1,6 @@
 .PHONY: caddy-install caddy-override caddy-reload install-go firewall-setup \
-        install-site-clawedmachine deploy-clawedmachine help \
+        install-site-clawedmachine deploy-clawedmachine \
+        deploy-hamesjan help \
         install-node
 
 # ── Caddy ──────────────────────────────────────────────────────────────────
@@ -58,6 +59,11 @@ deploy-clawedmachine:
 	systemctl restart clawedmachine
 	$(MAKE) caddy-reload
 
+# ── hamesjan ───────────────────────────────────────────────────────────────
+
+deploy-hamesjan:
+	bash /root/jamesdroplet/scripts/deploy-hamesjan.sh
+
 # ── Bootstrap (first-time, run targets in order) ───────────────────────────
 #
 #   make caddy-install
@@ -92,3 +98,4 @@ help:
 	@echo "  install-node                Install Node.js 22 via NVM + pnpm + turbo"
 	@echo "  install-site-clawedmachine  Register clawedmachine systemd service"
 	@echo "  deploy-clawedmachine        Build SvelteKit app, restart service, reload Caddy"
+	@echo "  deploy-hamesjan             Pull, build, and serve hamesjan.com static site"
