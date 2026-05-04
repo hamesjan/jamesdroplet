@@ -1,6 +1,6 @@
 .PHONY: caddy-install caddy-override caddy-reload install-go firewall-setup \
         install-site-clawedmachine deploy-clawedmachine \
-        deploy-hamesjan help \
+        install-site-hamesjan deploy-hamesjan help \
         install-node
 
 # ── Caddy ──────────────────────────────────────────────────────────────────
@@ -60,6 +60,12 @@ deploy-clawedmachine:
 	$(MAKE) caddy-reload
 
 # ── hamesjan ───────────────────────────────────────────────────────────────
+
+install-site-hamesjan:
+	cp /root/hamesjan/hamesjan.service /etc/systemd/system/hamesjan.service
+	systemctl daemon-reload
+	systemctl enable hamesjan
+	systemctl start hamesjan
 
 deploy-hamesjan:
 	bash /root/jamesdroplet/scripts/deploy-hamesjan.sh
